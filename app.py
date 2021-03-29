@@ -7,11 +7,11 @@ stores = [
         'name': 'My_Store',
         'items': [
             {
-                'item_name': 'chair',
+                'item_name': 'Chair',
                 'price': 1500
             },
             {
-                'item_name': 'chair',
+                'item_name': 'Cup',
                 'price': 77
             }
         ]
@@ -58,15 +58,11 @@ def create_item(name):
 
 
 # GET /store/<name>/item
-@app.route('/store/<string:name>/<string:item_name>')
-def get_items(name, item_name):
-    items = []
+@app.route('/store/<string:name>/item')
+def get_items(name):
     for store in stores:
         if store['name'] == name:
-            for item in store['items']:
-                if item['item_name'] == item_name:
-                    items.append(item)
-    return jsonify(items)
+            return jsonify(store['items'])
 
 
 if __name__ == '__main__':
